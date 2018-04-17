@@ -53,3 +53,18 @@ class UserViewSet(viewsets.ModelViewSet):
         except:
             return JsonResponse({"message": "Something went wrong while requesting your ride"},
                                 status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def list(self, request, *args, **kwargs):
+        try:
+            user_id = request.GET['id']
+        except:
+            return JsonResponse({"message": "Please provide a User ID to fetch the status"},
+                                status=status.HTTP_400_BAD_REQUEST)
+        try:
+            existing_rides = Ride.objects.filter(user=user_id).order_by('-created_at')
+            rides = self.serializer_class(existing_rides, many=True)
+            # return Response(JSONRenderer().render(rides.data))
+            return JsonResponse({"rides": rides.data}, status=status.HTTP_200_OK)
+        except:
+            return JsonResponse({"message": "Something went wrong while fetching your status"},
+                                status=status.HTTP_500_INTERNAL_SERVER_ERROR)
