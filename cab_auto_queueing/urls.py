@@ -22,5 +22,8 @@ from app import urls as app_urls
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'^$', index_view),
+    url(r'^userapp$', userapp_view),
+    url(r'^driverapp$', driverapp_view),
+    url(r'^dashboard$', dashboard_view),
     url(r'^api/', include(app_urls)),
 ]
