@@ -78,3 +78,18 @@ class RideViewSet(viewsets.ModelViewSet):
             return JsonResponse({"message": "There was some error while fetching the waiting rides"},
                                 status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+    def current_driver_ride(self, request, *args, **kwargs):
+        try:
+            driver_id = request.GET['driver_id']
+        except:
+            return JsonResponse({"message": "Driver ID not provided"}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            ride_details = Ride.objects.filter(pickup_driver=driver_id, status='ongoing')
+            if ride_details.exists():
+                serializer = self.serializer_class(ride_details)
+                return JsonResponse({"ride_details": serializer.data}, status=status.HTTP_200_OK)
+            else:
+                return JsonResponse({"ride_details": None}, status=status.HTTP_200_OK)
+        except:
+            return JsonResponse({"message": "Something went wrong while fetching your current ride details"},
+                                status=status.HTTP_500_INTERNAL_SERVER_ERROR)
