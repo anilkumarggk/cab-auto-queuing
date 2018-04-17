@@ -29,7 +29,7 @@ def dashboard_view(request):
         return render(request, 'dashboard.html')
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class RideViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = RideSerializer
 
@@ -68,3 +68,13 @@ class UserViewSet(viewsets.ModelViewSet):
         except:
             return JsonResponse({"message": "Something went wrong while fetching your status"},
                                 status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def unassigned_rides(self, request, *args, **kwargs):
+        try:
+            waiting_rides = Ride.objects.filter(status='waiting')
+            serializer = self.serializer_class(waiting_rides, many=True)
+            return JsonResponse({"waiting_rides": serializer.data}, status=status.HTTP_200_OK)
+        except:
+            return JsonResponse({"message": "There was some error while fetching the waiting rides"},
+                                status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
