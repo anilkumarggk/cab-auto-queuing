@@ -11,11 +11,11 @@ RIDE_STATUS_CHOICES = (
 )
 
 AVAILABLE_DRIVER_CHOICES = (
-    ('driver1', 'Driver 1'),
-    ('driver2', 'Driver 2'),
-    ('driver3', 'Driver 3'),
-    ('driver4', 'Driver 4'),
-    ('driver5', 'Driver 5')
+    (1, 'Driver 1'),
+    (2, 'Driver 2'),
+    (3, 'Driver 3'),
+    (4, 'Driver 4'),
+    (5, 'Driver 5')
 )
 
 
