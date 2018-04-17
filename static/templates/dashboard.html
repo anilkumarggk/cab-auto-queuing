@@ -1,0 +1,82 @@
+{% include "header.html" %}
+<h1 class="uk-heading-primary uk-heading-divider">
+    Dashboard
+</h1>
+<div class="uk-child-width-3@s uk-child-width-1-3@m uk-padding" uk-grid>
+    <div>
+        <ul class="uk-child-width-expand uk-subnav" uk-tab>
+            <li class="uk-active"><a href="#waiting">Waiting</a></li>
+            <li><a href="#ongoing">Ongoing</a></li>
+            <li><a href="#complete">Complete</a></li>
+        </ul>
+
+        <ul class="uk-switcher uk-margin">
+            <li>
+                <table class="uk-table uk-table-hover uk-table-middle uk-table-small">
+                    <caption class="uk-text-center">
+                        <a href="">Refresh</a>
+                    </caption>
+                    <thead>
+                    <th>User ID</th>
+                    <th class="uk-text-right">Ride requested on</th>
+                    </thead>
+                    <tbody>
+                    {% for i in "123456" %}
+                        <tr>
+                            <td># 12312</td>
+                            <td class="uk-text-right">
+                                12:46:39 PM
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </li>
+            <li>
+                <table class="uk-table uk-table-hover uk-table-middle">
+                    <caption class="uk-text-center">
+                        <a href="">Refresh</a>
+                    </caption>
+                    <thead>
+                    <th>User ID</th>
+                    <th>Driver ID</th>
+                    <th class="uk-text-right">Pick up time</th>
+                    </thead>
+                    <tbody>
+                    {% for i in "123456" %}
+                        <tr>
+                            <td># 12312</td>
+                            <td># 12312</td>
+                            <td class="uk-text-right">12:46:39 PM</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </li>
+            <li>
+                <table class="uk-table uk-table-hover uk-table-middle">
+                    <caption class="uk-text-center">
+                        <a href="">Refresh</a>
+                    </caption>
+                    <thead>
+                    <th>User ID</th>
+                    <th>Driver ID</th>
+                    <th class="uk-text-right">Completed at</th>
+                    </thead>
+                    <tbody>
+                    {% for i in "123456" %}
+                        <tr>
+                            <td># 12312</td>
+                            <td># 12312</td>
+                            <td class="uk-text-right">12:46:39 PM</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </li>
+        </ul>
+
+
+    </div>
+</div>
+{% include "footer.html" %}
