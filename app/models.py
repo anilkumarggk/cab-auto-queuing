@@ -23,3 +23,5 @@ class Ride(models.Model):
     user = models.IntegerField(null=False, default=0)
     status = models.CharField(choices=RIDE_STATUS_CHOICES, default='waiting', max_length=64)
     pickup_driver = models.CharField(choices=AVAILABLE_DRIVER_CHOICES, null=True, max_length=64)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
