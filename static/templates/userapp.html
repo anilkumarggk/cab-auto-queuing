@@ -1,17 +1,68 @@
 {% include "header.html" %}
+<script>
+    $(document).ready(function () {
+        request_ride = function () {
+            var user_id = $("input[type=number]").val()
+            $.ajax({
+                url: '/api/user/ride/',
+                method: 'post',
+                data: {
+                    user_id: user_id
+                }
+            }).then(function (successResponse) {
+                UIkit.notification({
+                    message: successResponse.message + ".\nYou will shortly be redirected..",
+                    status: 'success'
+                });
+                window.setTimeout(function () {
+                    window.location.href = "/userapp?id=" + user_id;
+                }, 3000);
+            }, function (errorResponse) {
+                alert("error");
+                console.log(errorResponse);
+            })
+        }
+    })
+</script>
 <div class="uk-child-width-3@s uk-child-width-1-3@m uk-text-center uk-padding" uk-grid>
-    <form class="uk-form-horizontal uk-form-width-small">
-
-        <div class="uk-margin">
-            <label class="uk-form-label" for="form-horizontal-text">User ID</label>
-            <div class="uk-form-controls">
-                <input class="uk-input" id="form-horizontal-text" type="number" min="1" placeholder="Enter the user ID">
+    {% if not request.GET.id %}
+        <div class="uk-form-horizontal uk-form-width-small">
+            <div class="uk-margin">
+                <label class="uk-form-label" for="form-horizontal-text">User ID</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input" id="form-horizontal-text" type="number" min="1"
+                           placeholder="Enter the user ID">
+                </div>
             </div>
-        </div>
-        <div class="uk-margin">
-            <button class="uk-button uk-button-primary">Request ride</button>
-        </div>
+            <div class="uk-margin">
+                <button class="uk-button uk-button-primary" onclick="request_ride()">Request ride</button>
+            </div>
 
-    </form>
+        </div>
+    {% else %}
+        <table class="uk-table uk-table-hover uk-table-small">
+            <caption class="uk-text-center">
+                <a href="">Refresh</a>
+            </caption>
+            <thead>
+            <th class="uk-text-left">Status</th>
+            <th class="uk-text-left">Driver</th>
+            <th class="uk-text-right">Ride requested on</th>
+            </thead>
+            <tbody>
+            {% for i in "123456" %}
+                <tr>
+                    <td class="uk-text-left">Complete</td>
+                    <td class="uk-text-left">Driver1</td>
+                    <td class="uk-text-right">
+                        12:46:39 PM
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+
 </div>
 {% include "footer.html" %}
