@@ -5,4 +5,4 @@ from .models import Ride
 class RideSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ride
-        fields = ('user', 'created_at', 'modified_at')
+        fields = ('user', 'pickup_driver', 'status', 'created_at', 'modified_at')
