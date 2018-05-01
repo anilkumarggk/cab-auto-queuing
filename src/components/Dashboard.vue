@@ -2,6 +2,7 @@
     <div>
         <GlobalNavBar />
         <div uk-grid class="uk-flex-center">
+            <a @click="fetch_rides()" class="uk-text-center">Refresh</a>
             <div class="uk-width-1-2@m uk-padding uk-margin-large-top uk-text-center"
                 v-if="fetching_rides">
                 <div uk-spinner></div>
@@ -9,15 +10,15 @@
             </div>
             <div class="uk-width-1-2@m" v-else>
                 <ul class="uk-pagination uk-flex-right uk-margin-medium-top" uk-margin v-if="page_links.length > 1">
-                    
+
                     <li v-for="page in page_links" :class="{'uk-active': page[2], 'uk-disabled': page[3]}">
                         <router-link :to="{ name: $route.name, query: {page: page[1]} }">
                             {{ page[3]?'...':page[1] }}
                         </router-link>
                     </li>
-                    
-                    
-                    <!-- <li><a href="#"><span uk-pagination-previous></span></a></li> -->                    
+
+
+                    <!-- <li><a href="#"><span uk-pagination-previous></span></a></li> -->
                     <!-- <li><a href="#"><span uk-pagination-next></span></a></li> -->
                 </ul>
                 <table class="uk-table uk-table-striped" v-if="rides.length>0">
@@ -68,9 +69,9 @@ export default {
                     this.rides = successResponse.body.results;
                     this.page_links = successResponse.body.page_links;
                     this.fetching_rides = false;
-                }, 
+                },
                 errorResponse => {
-                    this.fetching_rides = false;                    
+                    this.fetching_rides = false;
                 }
             )
         }
