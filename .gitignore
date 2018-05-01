@@ -48,7 +48,7 @@ ENV/
 .mypy_cache/
 
 # Staticfiles
-staticfiles/
+# staticfiles/
 
 # Others:
 *.sqlite3
