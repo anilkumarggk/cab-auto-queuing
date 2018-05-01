@@ -1,0 +1,6 @@
+coverage==4.4.2
+coveralls==1.2.0
+Django==1.11.4
+djangorestframework==3.8.2
+celery==4.1.0
+django-celery-results==1.0.1
